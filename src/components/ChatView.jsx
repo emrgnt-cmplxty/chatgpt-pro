@@ -377,14 +377,17 @@ const ChatView = () => {
                 endAdornment: (
                   <InputAdornment position="end">
                     {" "}
-                    <IconButton onClick={(e) => sendMessage(e)}>
+                    <IconButton
+                      disabled={thinking}
+                      onClick={(e) => sendMessage(e)}
+                    >
                       <Send />
                     </IconButton>
                   </InputAdornment>
                 ),
               }}
               onKeyUp={(e) => {
-                if (e.key === "Enter" && !e.shiftKey) {
+                if (e.key === "Enter" && !e.shiftKey && !thinking) {
                   sendMessage(e);
                 }
               }}
