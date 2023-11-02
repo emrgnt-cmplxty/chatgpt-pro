@@ -15,8 +15,10 @@ import {
   DialogTitle,
   Divider,
   IconButton,
+  Link,
   ThemeProvider,
   Toolbar,
+  Tooltip,
   Typography,
   createTheme,
 } from "@mui/material";
@@ -148,7 +150,6 @@ const App = () => {
             </DialogActions>
             </DialogContentText>
           </DialogContent>
-
         </Dialog>
         <Box sx={{ display: "flex" }}>
           <CssBaseline />
@@ -157,9 +158,23 @@ const App = () => {
               <IconButton color="inherit" aria-label="open drawer" edge="start" onClick={handleDrawerToggle} sx={{ mr: 2, display: { sm: "none" } }}>
                 <Menu />
               </IconButton>
+              <Box sx={{ display:"flex", justifyContent:"space-between", "alignItems":"center", width:"100%"}}>
               <Typography variant="h6" noWrap component="div">
                <Title />
               </Typography>
+              <Link href="https://huggingface.co/SciPhi/SciPhi-Self-RAG-Mistral-7B-32k" target="_blank">
+                <Tooltip title="Download the model from HuggingFace">
+                <IconButton>
+                <img
+                  src={`https://huggingface.co/front/assets/huggingface_logo-noborder.svg`}
+                  alt="logo"
+                  width="32px"
+                  height="32px"
+                />
+                </IconButton>
+                </Tooltip>
+              </Link>
+              </Box>
             </Toolbar>
           </AppBar>
           <Box component="nav" sx={{ width: { sm: 280 }, flexShrink: { sm: 0 } }} aria-label="Sidebar">
