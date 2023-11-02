@@ -118,6 +118,12 @@ const ChatView = () => {
     const messageToSend = initialMessage || formValue;
     const cleanPrompt = messageToSend; //replaceProfanities(messageToSend);
 
+    // this stops spammers
+    if(messageToSend == "" || messageToSend == " " || messageToSend == null) {
+      return;
+    }
+
+
     setThinking(true);
     setFormValue("");
 
