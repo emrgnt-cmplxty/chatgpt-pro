@@ -2,13 +2,10 @@
 ✔ Rewrite Frontend to use MUI components @done(23-10-25 00:29)
 
 WIP:
-☐ Add "regenerate" button in Frontend after each message (mui added, api added, need message forking)
-☐ Add RLHF to Frontend (placement determined) (mui added, need api)
-☐ Add RAG toggle in Frontend (mui added, need api)
+✔ add disabled to the input while waiting for a response @done(23-11-02 23:02)
 
 
 BACKEND:
-☐ Make an API (Python, Flask)
 ☐ Add RLHF to API
 ☐ Have each message have a uuid [settled on parentUUID]
 ☐ Add "branching"/forking conversations

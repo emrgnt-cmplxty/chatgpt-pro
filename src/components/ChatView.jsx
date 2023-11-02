@@ -65,7 +65,6 @@ const ChatView = () => {
   const [modalContext, setModalContext] = useState(null);
   const [visibleContext, setVisibleContext] = useState(false);
   const [context, setContext] = useState([]);
-  const [sendingMessage, setSendingMessage] = useState(false);
 
   const initialMessageProcessed = useRef(false);
   const [
@@ -380,6 +379,7 @@ const ChatView = () => {
               value={formValue}
               fullWidth
               onChange={(e) => setFormValue(e.target.value)}
+              disabled={thinking}
               InputProps={{
                 endAdornment: (
                   <InputAdornment position="end">
