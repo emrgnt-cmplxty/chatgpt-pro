@@ -59,7 +59,6 @@ const template = [
  */
 const ChatView = () => {
   const messagesEndRef = useRef();
-  const [canSendMessage, setCanSendMessage] = useState(true); // New state variable
   const inputRef = useRef();
   const [formValue, setFormValue] = useState("");
   const [thinking, setThinking] = useState(false);
@@ -115,11 +114,6 @@ const ChatView = () => {
    * @param {Event} e - The submit event of the form.
    */
   const sendMessage = async (e, initialMessage = null) => {
-    const now = Date.now();
-    if (now - lastMessageTime < THROTTLE_TIME) {
-      alert(`You must wait ${THROTTLE_TIME / 1000} seconds between messages.`);
-      return;
-    }
     e?.preventDefault(); // e will be undefined when called programmatically
 
     const messageToSend = initialMessage || formValue;
@@ -145,9 +139,6 @@ const ChatView = () => {
       window.alert(`Error: ${err} please try again later`);
       setThinking(false);
     }
-    setTimeout(() => {
-      setCanSendMessage(true);
-    }, 10000); // 10 seconds delay
 
     setThinking(false);
   };
@@ -435,4 +426,4 @@ const ChatView = () => {
   );
 };
 
-export default ChatView
+export default ChatView;
