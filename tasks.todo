@@ -1,0 +1,28 @@
+✔ Add MUI to Frontend @done(23-10-19 01:17)
+✔ Rewrite Frontend to use MUI components @done(23-10-25 00:29)
+
+WIP:
+☐ Add "regenerate" button in Frontend after each message (mui added, api added, need message forking)
+☐ Add RLHF to Frontend (placement determined) (mui added, need api)
+☐ Add RAG toggle in Frontend (mui added, need api)
+
+
+BACKEND:
+☐ Make an API (Python, Flask)
+☐ Add RLHF to API
+☐ Have each message have a uuid [settled on parentUUID]
+☐ Add "branching"/forking conversations
+✔ Transfer prompt logic to API @done(23-10-30 23:18)
+
+
+
+---
+B propposed colorscheme:
+    white: #F0EDEE
+    black: #070707
+    ashgreen: #c9d5c0
+    rosebrown: #C89294
+    ashgrey: #96AFB0
+    babyblue: #8CC3E3
+    parchment: #E8E3C9
+    darkblue: #0D1B2A

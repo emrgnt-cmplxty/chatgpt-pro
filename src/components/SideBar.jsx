@@ -1,91 +1,170 @@
-import { useState, useEffect, useContext } from "react";
-import {
-  MdClose,
-  MdMenu,
-  MdOutlineCoffee,
-  MdOutlineVpnKey,
-  MdDelete,
-} from "react-icons/md";
-import { AiOutlineGithub } from "react-icons/ai";
+import { useEffect, useContext } from "react";
 import { ChatContext } from "../context/chatContext";
-// import bot from "../assets/logo.png";
-import ToggleTheme from "./ToggleTheme";
-import Modal from "./Modal";
-import Setting from "./Setting";
 
+/**
+ * MUI imports.
+ */
+import Drawer from "@mui/material/Drawer";
+import { Add, Close, Delete, Public } from "@mui/icons-material";
+import {
+  Box,
+  Button,
+  Divider,
+  IconButton,
+  List,
+  Link,
+  ListItem,
+  ListItemButton,
+  ListItemIcon,
+  ListItemText,
+  Typography,
+} from "@mui/material";
+
+import logo from "../assets/logo.png";
 /**
  * A sidebar component that displays a list of nav items and a toggle
  * for switching between light and dark modes.
  *
  * @param {Object} props - The properties for the component.
  */
-const SideBar = () => {
-  const [open, setOpen] = useState(true);
-  const [, , clearChat] = useContext(ChatContext);
-  const [modalOpen, setModalOpen] = useState(false);
+{
+  /* <SideBar drawerOpen={drawerOpen} changeDrawer={handleDrawerToggle} /> */
+}
+const SideBar = (props) => {
+  const { drawerOpen, changeDrawer, clDrawer, opDrawer } = props;
+  const [
+    conversations,
+    currentConversation,
+    selectConversation,
+    addConversation,
+    deleteConversation,
+    ,
+    clearChat,
+  ] = useContext(ChatContext);
 
   function handleResize() {
-    window.innerWidth <= 720 ? setOpen(false) : setOpen(true);
+    window.innerWidth <= 720 ? clDrawer() : opDrawer();
   }
-
   useEffect(() => {
     handleResize();
+    window.addEventListener("resize", handleResize);
   }, []);
 
   function clear() {
     clearChat();
   }
 
-  return (
-    <section
-      className={`${
-        open ? "w-72" : "w-16"
-      } bg-neutral flex flex-col items-center gap-y-4 h-screen pt-4 relative duration-100 shadow-md`}
-    >
-      <ul className="w-full menu rounded-box">
-        <li>
-          <a className="border border-slate-500" onClick={clear}>
-            <MdDelete size={15} />
-            <p className={`${!open && "hidden"}`}>Clear chat</p>
-          </a>
-        </li>
-      </ul>
+  const drawerContent = (
+    <>
+      <Box sx={{ display: "flex", justifyContent: "space-between" }}>
+        <Link href="https://sciphi.ai" underline="none">
+          <Box
+            sx={{
+              display: "flex",
+              pt: 2,
+              pb: 1.9,
+              ml: 2,
+              justifyContent: "space-between",
+              alignItems: "center", // To align items perfectly inline.
+            }}
+          >
+            <img
+              src={logo}
+              alt="logo"
+              width="32px"
+              height="32px"
+              sx={{ marginRight: 1 }}
+            />{" "}
+            {/* Added marginRight for slight separation */}
+            <Typography variant="h6" noWrap sx={{ pl: 1, color: "white" }}>
+              SciPhi
+            </Typography>
+            <Button
+              onClick={changeDrawer}
+              sx={{ display: { xs: "block", sm: "none" } }}
+            >
+              {/* Your button content here */}
+            </Button>
+          </Box>
+        </Link>
 
-      <ul className="absolute bottom-0 w-full gap-1 menu rounded-box">
-        <li>
-          <ToggleTheme open={open} />
-        </li>
-        {/* <li>
-          <a
-            href="https://www.buymeacoffee.com/eyuel"
-            rel="noreferrer"
-            target="_blank"
-          >
-            <MdOutlineCoffee size={15} />
-            <p className={`${!open && "hidden"}`}>Support this project</p>
-          </a>
-        </li> */}
-        {/* <li>
-          <a
-            rel="noreferrer"
-            target="_blank"
-            href="https://github.com/EyuCoder/chatgpt-clone"
-          >
-            <AiOutlineGithub size={15} />
-            <p className={`${!open && "hidden"}`}>Github</p>
-          </a>
-        </li>
-        <li>
-          <a onClick={() => setModalOpen(true)}>
-            <MdOutlineVpnKey size={15} />
-            <p className={`${!open && "hidden"}`}>OpenAI Key</p>
-          </a>
-        </li> */}
-      </ul>
-      <Modal title="Setting" modalOpen={modalOpen} setModalOpen={setModalOpen}>
-        <Setting modalOpen={modalOpen} setModalOpen={setModalOpen} />
-      </Modal>
-    </section>
+        {/* <img src={logo} alt="logo" width="50px" height="50px" />
+        <Typography variant="h6" noWrap sx={{ ml: 1, mt: 1, mb: 1 }}>
+          SciPhi
+        </Typography> */}
+        <Button
+          onClick={changeDrawer}
+          sx={{ display: { xs: "block", sm: "none" } }}
+        >
+          <Close size={25} />
+        </Button>
+      </Box>
+      <Divider />
+      <List>
+        <ListItem disablePadding>
+          <ListItemButton onClick={addConversation}>
+            <ListItemIcon>
+              <Add />
+            </ListItemIcon>
+            <ListItemText primary="New conversation" />
+          </ListItemButton>
+        </ListItem>
+      </List>
+      <Divider />
+
+      {/* MessageLinks come here */}
+      {conversations.map((conversation) => (
+        <ListItem
+          disablePadding
+          key={conversation.uuid}
+          selected={currentConversation?.uuid === conversation.uuid}
+        >
+          <ListItemButton onClick={() => selectConversation(conversation.uuid)}>
+            <ListItemIcon>
+              <Public />
+            </ListItemIcon>
+            {`${conversation.title}`}
+          </ListItemButton>
+          <IconButton onClick={() => deleteConversation(conversation.uuid)}>
+            <Delete />
+          </IconButton>
+        </ListItem>
+      ))}
+      <Divider />
+    </>
+  );
+
+  const container =
+    window !== undefined ? () => window.document.body : undefined;
+
+  return (
+    <>
+      <Drawer
+        container={container}
+        variant="temporary"
+        open={drawerOpen}
+        onClose={changeDrawer}
+        ModalProps={{
+          keepMounted: true, // Better open performance on mobile.
+        }}
+        sx={{
+          display: { xs: "block", sm: "none" },
+          "& .MuiDrawer-paper": { boxSizing: "border-box", width: 280 },
+        }}
+      >
+        {drawerContent}
+      </Drawer>
+      <Drawer
+        variant="permanent"
+        sx={{
+          display: { xs: "none", sm: "block" },
+          "& .MuiDrawer-paper": { boxSizing: "border-box", width: 280 },
+        }}
+        open
+      >
+        {drawerContent}
+      </Drawer>
+    </>
   );
 };
 

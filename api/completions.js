@@ -16,28 +16,19 @@ export default async (req, res) => {
     baseURL: process.env.SCIPHI_API_URL,
   });
 
-  let conversation =
-    "### System:\n\nYou are a helpful assistant which thinks step by step to answer user questions.\n";
-
-  for (const message of messages) {
-    // console.log(message);
-    if (message.ai) {
-      conversation += `### Response:\n\n${message.text}\n`;
-    } else {
-      conversation += `### Instruction:\n\n${message.text}\n`;
-    }
-  }
-  conversation += "### Instruction:\n\n" + prompt + "\n### Response:\n\n";
-
-  const response = await openai.completions.create({
-    prompt: conversation,
+  console.log("messages = ", messages);
+  let messagesForChat = messages.map((message) => {
+    return { role: message.ai ? "assistant" : "user", content: message.text };
+  });
+  messagesForChat.push({ role: "user", content: prompt });
+  console.log("messagesForChat = ", messagesForChat);
+  const response = await openai.chat.completions.create({
+    messages: messagesForChat,
     model: gptVersion,
-    temperature: 0.1,
+    temperature: 0.2,
     max_tokens: 16_348,
   });
-
-  let response_str = response.choices[0].text;
-  response_str = response_str.trim();
-
-  res.status(200).json({ response: response_str });
+  res
+    .status(200)
+    .json({ response: response.completion, context: response.context });
 };
