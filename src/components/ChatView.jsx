@@ -4,6 +4,7 @@ import { ChatContext } from "../context/chatContext";
 import Thinking from "./Thinking";
 import ReactDOM from "react-dom";
 import {
+  Alert,
   AppBar,
   Box,
   Card,
@@ -267,6 +268,11 @@ const ChatView = () => {
 
         <DialogContent dividers>
           <Grid container spacing={2}>
+            <Grid item xs={12} sm={12} md={12}>
+              <Alert severity="info">
+                This is the Retreival Context used to generate the response. This is a list of the 10 most relevant search results the AI found and selected to guide its response.
+              </Alert>
+            </Grid>
             {context.map((item, index) => (
               <Grid item xs={12} sm={6} md={6} key={index}>
                 <Card variant="outlined">

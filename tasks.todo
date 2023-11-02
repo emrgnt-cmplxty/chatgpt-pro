@@ -3,7 +3,18 @@
 
 WIP:
 ✔ add disabled to the input while waiting for a response @done(23-11-02 23:02)
+☐ Context explanation (inside the rag context)
+☐ reorder message stack
+☐ fix remove for reordered stack
+☐ prep light/dark toggle and add styling for both
+☐ landing page 100vh, fixes for the input
+☐ icons with lower opacity/higher opacity on hover
+☐ support for rejected marker - disable rag context
+☐ Terms of Service page
+☐ First-load disclaimer [set it to localstorage, in the future tie to account]
 
+FUTURE:
+☐ Accounts/login/logout
 
 BACKEND:
 ☐ Add RLHF to API
