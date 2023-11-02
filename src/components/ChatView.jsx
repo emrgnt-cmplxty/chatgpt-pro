@@ -359,7 +359,7 @@ const ChatView = () => {
         >
           <form
             onSubmit={sendMessage}
-            disabled={thinking}
+            disabled={thinking || formValue === ""}
             style={{
               display: "flex",
               justifyContent: "space-between",
@@ -378,7 +378,7 @@ const ChatView = () => {
                   <InputAdornment position="end">
                     {" "}
                     <IconButton
-                      disabled={thinking}
+                      disabled={thinking || formValue === ""}
                       onClick={(e) => sendMessage(e)}
                     >
                       <Send />
@@ -387,7 +387,12 @@ const ChatView = () => {
                 ),
               }}
               onKeyUp={(e) => {
-                if (e.key === "Enter" && !e.shiftKey && !thinking) {
+                if (
+                  e.key === "Enter" &&
+                  !e.shiftKey &&
+                  !thinking &&
+                  formValue
+                ) {
                   sendMessage(e);
                 }
               }}
