@@ -191,6 +191,7 @@ const ChatView = () => {
 
     if (initialMessage && !isInjected) {
       initialMessageProcessed.current = true;
+      addConversation()
       sendMessage(null, initialMessage);
       // Mark as injected in both sessionStorage and local state
       sessionStorage.setItem("initialMessageInjected", "true");
