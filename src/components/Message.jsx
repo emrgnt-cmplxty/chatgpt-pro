@@ -80,8 +80,8 @@ const Message = (props) => {
                   title="Rate reply as neutral - NOT IMPLEMENTED"
                 >
                   <>
-                    <IconButton color="inherit" sx={{ ":hover": { opacity: 1 }, ":hover > *": { opacity: 1 } }}>
-                      <ThumbUp sx={{ opacity: 0.7, ":hover": { opacity: 1 } }} />
+                    <IconButton color="inherit" sx={{ ":hover": { opacity: 1 }, ":hover > *": { opacity: 1 }, transition: "opacity 0.5s ease"  }}>
+                      <ThumbUp sx={{ opacity: 0.7, ":hover": { opacity: 1 }, transition: "opacity 0.5s ease"  }} />
                     </IconButton>
                   </>
                 </Tooltip>
@@ -90,8 +90,8 @@ const Message = (props) => {
                   title="Rate reply as negative - NOT IMPLEMENTED"
                 >
                   <>
-                    <IconButton color="inherit" sx={{ ":hover": { opacity: 1 }, ":hover > *": { opacity: 1 } }}>
-                      <ThumbDown sx={{ opacity: 0.7, ":hover": { opacity: 1 } }} />
+                    <IconButton color="inherit" sx={{ ":hover": { opacity: 1 }, ":hover > *": { opacity: 1 }, transition: "opacity 0.5s ease" }}>
+                      <ThumbDown sx={{ opacity: 0.7, ":hover": { opacity: 1 }, transition: "opacity 0.5s ease"  }} />
                     </IconButton>
                   </>
                 </Tooltip>
@@ -103,17 +103,17 @@ const Message = (props) => {
                         onClick={() => {
                           props.viewModal(id);
                         }}
-                        sx={{ ":hover": { opacity: 1 }, ":hover > *": { opacity: 1 } }}>
+                        sx={{ ":hover": { opacity: 1 }, ":hover > *": { opacity: 1 }, transition: "opacity 0.5s ease"  }}>
                         {" "}
-                        <ZoomIn  sx={{ opacity: 0.7, ":hover": { opacity: 1 } }} />{" "}
+                        <ZoomIn  sx={{ opacity: 0.7, ":hover": { opacity: 1 }, transition: "opacity 0.5s ease"  }} />{" "}
                       </IconButton>
                     </>
                   </Tooltip>
                 )}
                 <Tooltip placement="top" title="Regenerate last message">
                   <>
-                    <IconButton color="inherit" onClick={(e) => props.regen(e)}  sx={{ ":hover": { opacity: 1 }, ":hover > *": { opacity: 1 } }}>
-                      <Refresh  sx={{ opacity: 0.7, ":hover": { opacity: 1 } }} />
+                    <IconButton color="inherit" onClick={(e) => props.regen(e)}  sx={{ ":hover": { opacity: 1 }, ":hover > *": { opacity: 1 }, transition: "opacity 0.5s ease"  }}>
+                      <Refresh  sx={{ opacity: 0.7, ":hover": { opacity: 1 }, transition: "opacity 0.5s ease"  }} />
                     </IconButton>
                   </>
                 </Tooltip>
