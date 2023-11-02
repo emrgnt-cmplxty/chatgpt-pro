@@ -45,12 +45,12 @@ const template = [
     prompt: "How do computers work?",
   },
   {
-    title: "Business ideas",
-    prompt: "Generate 5 business ideas for a new startup company.",
+    title: "Learn about biology",
+    prompt: "What is the central dogma of biology?",
   },
   {
-    title: "What is recursion?",
-    prompt: "What is recursion? Show me an example in Python.",
+    title: "Learn about chemistry",
+    prompt: "What is the difference between an acid and a base?",
   },
 ];
 
