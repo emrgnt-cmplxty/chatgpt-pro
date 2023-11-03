@@ -113,7 +113,7 @@ const SideBar = (props) => {
       <Divider />
         
       {/* MessageLinks come here */}
-      {conversations.map((conversation) => (
+      {conversations.slice().reverse().map((conversation) => (
   
         <ListItemButton 
           disablePadding
