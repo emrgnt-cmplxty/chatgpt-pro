@@ -111,24 +111,31 @@ const SideBar = (props) => {
         </ListItem>
       </List>
       <Divider />
-
+        
       {/* MessageLinks come here */}
       {conversations.map((conversation) => (
-        <ListItem
+  
+        <ListItemButton 
           disablePadding
+          dense={true}
+          onClick={() => selectConversation(conversation.uuid)}  
           key={conversation.uuid}
-          selected={currentConversation?.uuid === conversation.uuid}
-        >
-          <ListItemButton onClick={() => selectConversation(conversation.uuid)}>
-            <ListItemIcon>
+          selected={currentConversation?.uuid === conversation.uuid}>
+            <ListItemIcon sx={{
+              maxWidth: "24px",
+              minWidth: "24px",
+              width: "24px",
+              marginRight: "6px",
+            }}>
               <Public />
             </ListItemIcon>
-            {`${conversation.title}`}
-          </ListItemButton>
+            {/* we need to limit conversation.title to 20 chars, and add ellipses at the end */}
+            <ListItemText primary={`${conversation.title.substring(0, 20)}${conversation.title.length > 20 ? "..." : ""}`}
+            />
           <IconButton onClick={() => deleteConversation(conversation.uuid)}>
             <Delete />
           </IconButton>
-        </ListItem>
+        </ListItemButton>
       ))}
       <Divider />
     </>

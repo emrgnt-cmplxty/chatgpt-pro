@@ -7,6 +7,7 @@ WIP:
 ✔ First-load disclaimer [set it to localstorage, in the future tie to account] @done(23-11-03 00:26)
 ✔ icons with lower opacity/higher opacity on hover @done(23-11-02 23:34)
 ✔ Add huggingface logo and link to the model @done(23-11-03 00:43)
+✔ fix conversation list height @done(23-11-03 01:06)
 ☐ reorder message stack
 ☐ fix remove for reordered stack
 ☐ support for rejected marker - disable rag context
