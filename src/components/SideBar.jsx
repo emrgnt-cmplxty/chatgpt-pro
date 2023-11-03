@@ -5,7 +5,7 @@ import { ChatContext } from "../context/chatContext";
  * MUI imports.
  */
 import Drawer from "@mui/material/Drawer";
-import { Add, Close, Delete, Public } from "@mui/icons-material";
+import { Add, Brightness3, Brightness4, Close, Delete, Nightlight, Public } from "@mui/icons-material";
 import {
   Box,
   Button,
@@ -19,6 +19,7 @@ import {
   ListItemText,
   Typography,
 } from "@mui/material";
+import { ColorModeContext } from "../App"
 
 import logo from "../assets/logo.png";
 /**
@@ -50,13 +51,11 @@ const SideBar = (props) => {
     window.addEventListener("resize", handleResize);
   }, []);
 
-  function clear() {
-    clearChat();
-  }
+  const { toggleColorMode } = useContext(ColorModeContext);
 
   const drawerContent = (
     <>
-      <Box sx={{ display: "flex", justifyContent: "space-between" }}>
+      <Box sx={{ display: "flex", justifyContent: "space-between", alignItems:"center" }}>
         <Link href="https://sciphi.ai" underline="none">
           <Box
             sx={{
@@ -73,31 +72,27 @@ const SideBar = (props) => {
               alt="logo"
               width="32px"
               height="32px"
-              sx={{ marginRight: 1 }}
+
             />{" "}
-            {/* Added marginRight for slight separation */}
-            <Typography variant="h6" noWrap sx={{ pl: 1, color: "white" }}>
+            <Typography variant="h6" noWrap sx={{ pl: 1, color: "text.primary" }}>
               SciPhi
             </Typography>
-            <Button
-              onClick={changeDrawer}
-              sx={{ display: { xs: "block", sm: "none" } }}
-            >
-              {/* Your button content here */}
-            </Button>
           </Box>
         </Link>
 
-        {/* <img src={logo} alt="logo" width="50px" height="50px" />
-        <Typography variant="h6" noWrap sx={{ ml: 1, mt: 1, mb: 1 }}>
-          SciPhi
-        </Typography> */}
-        <Button
-          onClick={changeDrawer}
-          sx={{ display: { xs: "block", sm: "none" } }}
+
+      <Box>
+        <IconButton onClick={toggleColorMode}>
+          
+          <Nightlight />
+          
+        </IconButton>
+        <IconButton onClick={changeDrawer}
+          sx={{ display: { sm: "none" } }}
         >
-          <Close size={25} />
-        </Button>
+          <Close/>
+        </IconButton>
+        </Box>
       </Box>
       <Divider />
       <List>
@@ -116,7 +111,6 @@ const SideBar = (props) => {
       {conversations.slice().reverse().map((conversation) => (
   
         <ListItemButton 
-          disablePadding
           dense={true}
           onClick={() => selectConversation(conversation.uuid)}  
           key={conversation.uuid}

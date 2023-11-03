@@ -1,7 +1,7 @@
 import {ChatContextProvider } from "./context/chatContext";
 import SideBar from "./components/SideBar";
 import ChatView from "./components/ChatView";
-import { useEffect, useState } from "react";
+import { createContext, useEffect, useMemo, useState } from "react";
 
 import {
   AppBar,
@@ -21,10 +21,11 @@ import {
   Tooltip,
   Typography,
   createTheme,
+  useMediaQuery,
 } from "@mui/material";
 import { Menu } from "@mui/icons-material";
 import Title from "./components/Title";
-
+export const ColorModeContext = createContext({ toggleColorMode: () => {} });
 const App = () => {
   // const [modalOpen, setModalOpen] = useState(false);
   const [drawerOpen, setDrawerOpen] = useState(false);
@@ -41,12 +42,27 @@ const App = () => {
     setDrawerOpen(!drawerOpen);
   };
 
+  const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
+  const [mode, setMode] = useState(prefersDarkMode ? 'dark' : 'light');
 
-  const darkTheme = createTheme({
-    palette: {
-      mode: "dark",
-    },
-  });
+  const colorMode = useMemo(
+    () => ({
+      toggleColorMode: () => {
+        setMode((prevMode) => (prevMode === 'light' ? 'dark' : 'light'));
+      },
+    }),
+    [],
+  );
+
+  const theme = useMemo(
+    () =>
+      createTheme({
+        palette: {
+          mode,
+        },
+      }),
+    [mode],
+  );
 
   // Modal for the first time user 
   const [openFirst, setOpenFirst] = useState(false);
@@ -68,8 +84,9 @@ const App = () => {
   }
 
   return (
-    <ThemeProvider theme={darkTheme}>
-      <ChatContextProvider>
+    <ColorModeContext.Provider value={colorMode}>
+    <ThemeProvider theme={theme}>      
+    <ChatContextProvider>
         <Dialog open={openFirst} handleClose={() => setOpenFirst(false)}>
           <DialogTitle>Terms and Conditions</DialogTitle>
           <Divider />
@@ -188,6 +205,7 @@ const App = () => {
 
       </ChatContextProvider>
     </ThemeProvider>
+    </ColorModeContext.Provider>
   );
 };
 

@@ -13,7 +13,7 @@ WIP:
 ☐ support for rejected marker - disable rag context
 ☐ Terms of Service page (is this necessary?)
 ☐ landing page 100vh, fixes for the input
-☐ prep light/dark toggle and add styling for both
+✔ prep light/dark toggle and add styling for both @done(23-11-03 01:56)
 
 FUTURE:
 ☐ Accounts/login/logout
