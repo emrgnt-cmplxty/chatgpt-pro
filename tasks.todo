@@ -2,13 +2,23 @@
 ✔ Rewrite Frontend to use MUI components @done(23-10-25 00:29)
 
 WIP:
-☐ Add "regenerate" button in Frontend after each message (mui added, api added, need message forking)
-☐ Add RLHF to Frontend (placement determined) (mui added, need api)
-☐ Add RAG toggle in Frontend (mui added, need api)
+✔ add disabled to the input while waiting for a response @done(23-11-02 23:02)
+✔ Context explanation (inside the rag context) @done(23-11-02 23:22)
+✔ First-load disclaimer [set it to localstorage, in the future tie to account] @done(23-11-03 00:26)
+✔ icons with lower opacity/higher opacity on hover @done(23-11-02 23:34)
+✔ Add huggingface logo and link to the model @done(23-11-03 00:43)
+✔ fix conversation list height @done(23-11-03 01:06)
+✔ reorder message stack @done(23-11-03 01:09)
+✔ fix remove for reordered stack @done(23-11-03 01:09)
+☐ support for rejected marker - disable rag context
+☐ Terms of Service page (is this necessary?)
+☐ landing page 100vh, fixes for the input
+✔ prep light/dark toggle and add styling for both @done(23-11-03 01:56)
 
+FUTURE:
+☐ Accounts/login/logout
 
 BACKEND:
-☐ Make an API (Python, Flask)
 ☐ Add RLHF to API
 ☐ Have each message have a uuid [settled on parentUUID]
 ☐ Add "branching"/forking conversations
