@@ -114,12 +114,16 @@ const SideBar = (props) => {
           dense={true}
           onClick={() => selectConversation(conversation.uuid)}  
           key={conversation.uuid}
-          selected={currentConversation?.uuid === conversation.uuid}>
+          selected={currentConversation?.uuid === conversation.uuid}
+          sx={{
+            maxHeight: "42px"
+          }}
+          >
             <ListItemIcon sx={{
               maxWidth: "24px",
               minWidth: "24px",
               width: "24px",
-              marginRight: "6px",
+              marginRight: "6px"
             }}>
               <Public />
             </ListItemIcon>
