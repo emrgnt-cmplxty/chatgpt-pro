@@ -36,14 +36,20 @@ const Message = (props) => {
                   color: "#ffffff",
                   borderRadius: "10px",
                   padding: "10px",
-                  maxWidth: "80%",
+                  maxWidth: "95%",
+                  sm:{
+                    maxWidth: "80%"
+                  }
                 }
               : {
                   backgroundColor: "#2d333a",
                   color: "#ffffff",
                   borderRadius: "10px",
                   padding: "10px",
-                  maxWidth: "80%",
+                  maxWidth: "95%",
+                  sm:{
+                    maxWidth: "80%"
+                  }
                 }
           }
         >

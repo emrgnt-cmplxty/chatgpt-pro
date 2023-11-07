@@ -360,7 +360,7 @@ const ChatView = () => {
 
         <AppBar
           position="fixed"
-          color="primary"
+          color="default"
           sx={{
             top: "auto",
             bottom: 0,
@@ -380,6 +380,7 @@ const ChatView = () => {
           >
             <TextField
               id="outlined-multiline-static"
+              color=""
               multiline
               inputRef={inputRef}
               value={formValue}
@@ -410,7 +411,7 @@ const ChatView = () => {
                 }
               }}
               sx={{ overflow: "scroll", maxHeight: "96px" }}
-            />
+                          />
           </form>
         </AppBar>
       </Box>
